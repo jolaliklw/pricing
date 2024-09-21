@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JL</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="show-harga">
+        <h2>
+          <span class="style-currency">Rp</span>
+          <span class="nominal">0</span>
+        </h2>
+      </div>
+
+      <div class="input-harga">
+        <label for="harga">
+          <span>Harga baru</span>
+          <input
+            type="text"
+            pattern="\d*"
+            name="harga"
+            id="harga"
+            maxlength="11"
+            placeholder="Rp"
+            value=""
+            pattern="[0-9]*"
+            inputmode="numeric"
+          />
+        </label>
+      </div>
+
+      <div class="input-berat">
+        <label for="berat">
+          <span>Berat</span>
+          <input
+            type="number"
+            name="berat"
+            id="berat"
+            value=""
+            step="0.01"
+            min="0.01"
+            placeholder="0,00"
+            pattern="[0-9]*"
+            inputmode="numeric"
+          />
+        </label>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
