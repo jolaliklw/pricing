@@ -62,6 +62,8 @@ const totalHarga = () => {
   );
 
   const convertToRp = rupiah(hargaAkhir);
+
+  if (!berat.value) return;
   showHarga.innerHTML = convertToRp;
 };
 
