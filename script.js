@@ -85,6 +85,12 @@ inputs.forEach((input) => {
       if (event.target.id == 'berat') {
         const addDecimals = Number(event.target.value);
         event.target.value = addDecimals.toFixed(2);
+
+        // save input harga baru when enter
+        if (numberWithDot(dataStored.hpr.toString()) !== hargaBaru.value) {
+          dataStored.hpr = hargaBaru.value;
+          window.localStorage.setItem('data', JSON.stringify(dataStored));
+        }
       }
 
       event.target.blur();
@@ -108,7 +114,7 @@ window.addEventListener('click', (e) => {
     berat.value = addDecimals.toFixed(2);
   }
 
-  // save harga baru
+  // save harga baru when tap anywhere
   if (dataStored) {
     if (numberWithDot(dataStored.hpr.toString()) !== hargaBaru.value) {
       dataStored.hpr = hargaBaru.value;
