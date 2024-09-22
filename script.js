@@ -19,6 +19,7 @@ if (!dataStored) {
   const data = { platform: 'T', hpr: '', ppn: 7, extra: 15000 };
   window.localStorage.setItem('data', JSON.stringify(data));
 }
+// localStorage.clear();
 
 if (dataStored) {
   document
@@ -31,11 +32,6 @@ const berat = document.querySelector('input#berat');
 const inputs = document.querySelectorAll('input');
 const showHarga = document.querySelector('#show-harga .nominal');
 const shortInfo = document.querySelector('.short-info p');
-
-// add 2 digit angka di belakang
-// const tesNomer = 2.18;
-// console.log(tesNomer.toFixed(2));
-// console.log(Number(Math.round(tesNomer + "e2") + "e-2"));
 
 function numberWithDot(x) {
   x = x.replace(/[^,\d]/g, '').toString();
@@ -112,9 +108,11 @@ window.addEventListener('click', (e) => {
   }
 
   // save harga baru
-  if (numberWithDot(dataStored.hpr.toString()) !== hargaBaru.value) {
-    dataStored.hpr = hargaBaru.value;
-    window.localStorage.setItem('data', JSON.stringify(dataStored));
+  if (dataStored) {
+    if (numberWithDot(dataStored.hpr.toString()) !== hargaBaru.value) {
+      dataStored.hpr = hargaBaru.value;
+      window.localStorage.setItem('data', JSON.stringify(dataStored));
+    }
   }
 });
 
@@ -129,12 +127,10 @@ const formatNumber = (number) => {
   return number;
 };
 
-if (!dataStored) {
-  shortInfo.innerHTML = 'data not found.';
+if (dataStored) {
+  shortInfo.innerHTML = `${dataStored.platform} / ${formatNumber(
+    dataStored.ppn
+  )} / ${formatNumber(Number(dataStored.extra))} ${
+    '\u00A9' + new Date().getFullYear()
+  }`;
 }
-
-shortInfo.innerHTML = `${dataStored.platform} / ${formatNumber(
-  dataStored.ppn
-)} / ${formatNumber(Number(dataStored.extra))} ${
-  '\u00A9' + new Date().getFullYear()
-}`;
