@@ -18,6 +18,7 @@ const dataStored = JSON.parse(window.localStorage.getItem('data'));
 if (!dataStored) {
   const data = { platform: 'T', hpr: '', ppn: 7, extra: 15000 };
   window.localStorage.setItem('data', JSON.stringify(data));
+  location.reload();
 }
 // localStorage.clear();
 
@@ -127,7 +128,9 @@ const formatNumber = (number) => {
   return number;
 };
 
-if (dataStored) {
+if (!dataStored) {
+  shortInfo.innerHTML = 'data not found.';
+} else {
   shortInfo.innerHTML = `${dataStored.platform} / ${formatNumber(
     dataStored.ppn
   )} / ${formatNumber(Number(dataStored.extra))} ${
