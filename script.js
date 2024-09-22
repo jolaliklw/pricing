@@ -13,24 +13,24 @@ window.addEventListener('resize', () => {
 //
 // ====================
 // get data from local storage
-// const saveHargaBaru = window.localStorage;
-// saveHargaBaru.setItem('hargaBaru', 123);
-// console.log(window.localStorage.getItem('hargaBaru'));
-// const data = { asdf: 123, qwer: 900 };
-// data.asdf = 'ganti';
-// console.log(data);
+const dataStored = JSON.parse(window.localStorage.getItem('data'));
 
-const ppn = 7;
-const tambahanHarga = 15000;
+if (!dataStored) {
+  const data = { platform: 'T', hpr: '', ppn: 7, extra: 15000 };
+  window.localStorage.setItem('data', JSON.stringify(data));
+}
 
-if (false) {
-  document.querySelector('input#harga').setAttribute('value', '2.000');
+if (dataStored) {
+  document
+    .querySelector('input#harga')
+    .setAttribute('value', numberWithDot(dataStored.hpr.toString()));
 }
 
 const hargaBaru = document.querySelector('input#harga');
 const berat = document.querySelector('input#berat');
 const inputs = document.querySelectorAll('input');
 const showHarga = document.querySelector('#show-harga .nominal');
+const shortInfo = document.querySelector('.short-info p');
 
 // add 2 digit angka di belakang
 // const tesNomer = 2.18;
@@ -58,13 +58,16 @@ const totalHarga = () => {
   const hargaPerGram = hargaBaru.value.replace(/[\s.]/g, '');
   // pembulatan angka
   const hargaAkhir = Math.round(
-    hargaPerGram * berat.value * (ppn / 100 + 1) + tambahanHarga
+    hargaPerGram * berat.value * (dataStored.ppn / 100 + 1) + dataStored.extra
   );
 
   const convertToRp = rupiah(hargaAkhir);
 
-  if (!berat.value) return;
-  showHarga.innerHTML = convertToRp;
+  if (Number(berat.value) > 0) {
+    return (showHarga.innerHTML = convertToRp);
+  }
+
+  return (showHarga.innerHTML = 0);
 };
 
 inputs.forEach((input) => {
@@ -94,7 +97,7 @@ inputs.forEach((input) => {
 
 // click anywhere to save
 window.addEventListener('click', (e) => {
-  // e.preventDefault();
+  e.preventDefault();
 
   // click anywhere kecuali ini
   if (e.target.id === 'berat' || e.target.id === 'harga') {
@@ -107,4 +110,31 @@ window.addEventListener('click', (e) => {
     const addDecimals = Number(berat.value);
     berat.value = addDecimals.toFixed(2);
   }
+
+  // save harga baru
+  if (numberWithDot(dataStored.hpr.toString()) !== hargaBaru.value) {
+    dataStored.hpr = hargaBaru.value;
+    window.localStorage.setItem('data', JSON.stringify(dataStored));
+  }
 });
+
+// format 1000 to 1k
+const formatNumber = (number) => {
+  number = number.toLocaleString('en-US', {
+    maximumFractionDigits: 2,
+    notation: 'compact',
+    compactDisplay: 'short',
+  });
+
+  return number;
+};
+
+if (!dataStored) {
+  shortInfo.innerHTML = 'data not found.';
+}
+
+shortInfo.innerHTML = `${dataStored.platform} / ${formatNumber(
+  dataStored.ppn
+)} / ${formatNumber(Number(dataStored.extra))} ${
+  '\u00A9' + new Date().getFullYear()
+}`;
