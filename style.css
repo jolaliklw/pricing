@@ -96,10 +96,6 @@
   &:hover {
     background-color: #eee;
   }
-
-  &:active {
-    background-color: #fff;
-  }
 }
 
 .tiga-titik::after {

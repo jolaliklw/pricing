@@ -59,7 +59,8 @@ const totalHarga = () => {
   const hargaPerGram = hargaBaru.value.replace(/[\s.]/g, '');
   // pembulatan angka
   const hargaAkhir = Math.round(
-    hargaPerGram * berat.value * (dataStored.ppn / 100 + 1) + dataStored.extra
+    hargaPerGram * berat.value * (dataStored.ppn / 100 + 1) +
+      Number(dataStored.extra)
   );
 
   const convertToRp = rupiah(hargaAkhir);
