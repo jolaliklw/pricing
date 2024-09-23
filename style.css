@@ -92,6 +92,7 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     background-color: #eee;
