@@ -10,6 +10,10 @@
   </head>
   <body>
     <div class="container">
+      <div class="btn-open-modal-wrap">
+        <button class="btn-open-modal"><div class="tiga-titik"></div></button>
+      </div>
+
       <div id="show-harga">
         <h2>
           <span class="style-currency">Rp</span>
@@ -54,6 +58,46 @@
 
       <div class="short-info">
         <p></p>
+      </div>
+
+      <div class="setting-modal">
+        <div class="setting-form">
+          <div class="btn-close-wrap">
+            <button class="btn-close-modal"></button>
+          </div>
+
+          <form>
+            <label for="platform">Platform</label>
+            <select id="platform" disabled>
+              <option selected disabled>Choose a platform</option>
+              <option value="S">Shopee</option>
+              <option value="T">Tiktok</option>
+            </select>
+
+            <label for="set-ppn">Ppn</label>
+            <input
+              type="number"
+              name="set-ppn"
+              id="set-ppn"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              step="0.1"
+              min="0"
+            />
+            <label for="set-extra">Additional Cost</label>
+            <input
+              type="number"
+              name="set-extra"
+              id="set-extra"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              min="0"
+              step="1000"
+            />
+          </form>
+
+          <button class="btn-save">Save</button>
+        </div>
       </div>
     </div>
 

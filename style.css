@@ -1,9 +1,13 @@
+:root {
+  --width-container: 60ch;
+}
+
 .container {
-  width: min(60ch, calc(100% - 4rem));
+  width: min(var(--width-container), calc(100% - 4rem));
   margin-inline: auto;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  padding-top: 4ch;
+  padding-top: 2ch;
   font-size: 16px;
 }
 
@@ -74,4 +78,88 @@
   font-size: 12px;
   font-weight: 100;
   user-select: none;
+}
+
+.btn-open-modal-wrap {
+  margin-bottom: 1rem;
+}
+
+.btn-open-modal {
+  display: flex;
+  justify-content: center;
+  padding-inline: 18px 9px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+.tiga-titik::after {
+  content: '\2807';
+  font-size: 2rem;
+}
+
+.setting-modal {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 99;
+  overflow: auto;
+}
+
+.setting-form {
+  width: min(var(--width-container), calc(100% - 4rem));
+  margin-inline: auto;
+  padding-top: 2ch;
+  min-height: 100%;
+
+  & > :first-child {
+    margin-bottom: 2rem;
+  }
+
+  & > form {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    & > *:nth-child(even) {
+      margin-bottom: 1rem;
+    }
+
+    & input,
+    & select {
+      padding: 2px 8px;
+    }
+  }
+}
+
+.btn-close-wrap {
+  display: flex;
+  justify-content: end;
+}
+
+button.btn-close-modal {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 0px 8px;
+
+  &:after {
+    display: inline-block;
+    content: '\00d7'; /* This will render the 'X' */
+    font-size: 32px;
+  }
+}
+
+button.btn-save {
+  padding: 4px 32px;
 }

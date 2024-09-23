@@ -16,7 +16,7 @@ window.addEventListener('resize', () => {
 const dataStored = JSON.parse(window.localStorage.getItem('data'));
 
 if (!dataStored) {
-  const data = { platform: 'T', hpr: '', ppn: 7, extra: 15000 };
+  const data = { platform: '.', hpr: '', ppn: 0, extra: 0 };
   window.localStorage.setItem('data', JSON.stringify(data));
   location.reload();
 }
@@ -26,6 +26,10 @@ if (dataStored) {
   document
     .querySelector('input#harga')
     .setAttribute('value', numberWithDot(dataStored.hpr.toString()));
+
+  document.querySelector('#set-ppn').setAttribute('value', dataStored.ppn);
+
+  document.querySelector('#set-extra').setAttribute('value', dataStored.extra);
 }
 
 const hargaBaru = document.querySelector('input#harga');
@@ -138,8 +142,43 @@ if (!dataStored) {
   shortInfo.innerHTML = 'data not found.';
 } else {
   shortInfo.innerHTML = `${dataStored.platform} / ${formatNumber(
-    dataStored.ppn
-  )} / ${formatNumber(Number(dataStored.extra))} ${
-    '\u00A9' + new Date().getFullYear()
-  }`;
+    dataStored.ppn == 0 ? '-' : dataStored.ppn
+  )} / ${
+    dataStored.extra == 0 ? '-' : formatNumber(Number(dataStored.extra))
+  } ${'\u00A9' + new Date().getFullYear()}`;
 }
+
+// modal
+const modal = document.querySelector('.setting-modal');
+const btnOpenModal = document.querySelector('.btn-open-modal');
+const btnCloseModal = document.querySelector('.btn-close-modal');
+const btnSave = document.querySelector('.btn-save');
+const setPpn = document.querySelector('#set-ppn');
+const setExtra = document.querySelector('#set-extra');
+
+btnOpenModal.addEventListener('click', (e) => {
+  e.preventDefault();
+  modal.style.display = 'block';
+});
+
+btnCloseModal.addEventListener('click', (e) => {
+  e.preventDefault();
+  modal.style.display = 'none';
+});
+
+btnSave.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  if (setPpn.value.length == 0) {
+    dataStored.ppn = 0;
+  }
+  if (setExtra.value.length == 0) {
+    dataStored.extra = 0;
+  }
+  dataStored.platform = '-';
+  dataStored.ppn = setPpn.value;
+  dataStored.extra = setExtra.value;
+  window.localStorage.setItem('data', JSON.stringify(dataStored));
+  location.reload();
+  modal.style.display = 'none';
+});
