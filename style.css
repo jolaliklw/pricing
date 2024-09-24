@@ -7,68 +7,71 @@
   margin-inline: auto;
   min-height: 100vh;
   min-height: calc(var(--vh, 1vh) * 100);
-  padding-top: 2ch;
+  padding-block: 2ch;
   font-size: 16px;
 }
 
 .input-harga,
 .input-berat {
   font-size: 1.125rem;
-  background-color: #aaa;
   margin-bottom: 2.5rem;
   width: 100%;
+}
 
-  & label {
-    position: relative;
-    display: block;
-    width: 100%;
-  }
+.input-harga > label,
+.input-berat > label {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
 
-  & span {
-    margin-left: 2ch;
-    position: relative;
-    z-index: 2;
-  }
+.input-harga span,
+.input-berat span {
+  margin-left: 2ch;
+  position: relative;
+  z-index: 2;
+}
 
-  & input {
-    z-index: 1;
-    display: block;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    text-align: end;
-    padding: 4px 16px;
-    padding-left: 16ch;
-    outline: none;
-    border: 2px solid #000;
-    border-radius: 8px;
+.input-harga input,
+.input-berat input {
+  z-index: 1;
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  text-align: end;
+  padding: 4px 16px;
+  padding-left: 16ch;
+  outline: none;
+  border: 2px solid #000;
+  border-radius: 8px;
+}
 
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-    &[type='number'] {
-      -moz-appearance: textfield;
-    }
-  }
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 #show-harga {
   display: block;
   margin-bottom: 2.5rem;
   text-align: center;
+}
 
-  span.style-currency {
-    color: #aaa;
-  }
+#show-harga span.style-currency {
+  color: #aaa;
+}
 
-  span.nominal {
-    font-size: 2.5rem;
-    font-weight: 500;
-  }
+#show-harga span.nominal {
+  font-size: 2.5rem;
+  font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .short-info {
@@ -85,23 +88,27 @@
 }
 
 .btn-open-modal {
-  display: flex;
-  justify-content: center;
-  padding-inline: 18px 9px;
+  padding: 18px;
   background-color: #fff;
   border: none;
   cursor: pointer;
+  position: relative;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    background-color: #eee;
-  }
 }
 
-.tiga-titik::after {
-  content: '\2807';
-  font-size: 2rem;
+.btn-open-modal:hover {
+  background-color: #eee;
+}
+
+.btn-open-modal::after {
+  display: inline-block;
+  position: absolute;
+  top: 17px;
+  left: 12px;
+  line-height: 0;
+  content: "\2807";
+  font-size: 1.7rem;
 }
 
 .setting-modal {
@@ -120,45 +127,55 @@
 .setting-form {
   width: min(var(--width-container), calc(100% - 4rem));
   margin-inline: auto;
-  padding-top: 2ch;
+  padding-block: 2ch;
   min-height: 100%;
+}
 
-  & > :first-child {
-    margin-bottom: 2rem;
-  }
+.setting-form > form {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
 
-  & > form {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
+.setting-form > form > *:nth-child(even) {
+  margin-bottom: 1rem;
+}
 
-    & > *:nth-child(even) {
-      margin-bottom: 1rem;
-    }
-
-    & input,
-    & select {
-      padding: 2px 8px;
-    }
-  }
+.setting-form select,
+.setting-form input {
+  padding: 4px 12px;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .btn-close-wrap {
   display: flex;
   justify-content: end;
+  margin-bottom: 4rem;
 }
 
 button.btn-close-modal {
   background-color: #fff;
   border: none;
   cursor: pointer;
-  padding: 0px 8px;
+  position: relative;
+  padding: 14px;
+  border-radius: 50%;
+}
 
-  &:after {
-    display: inline-block;
-    content: '\00d7'; /* This will render the 'X' */
-    font-size: 32px;
-  }
+button.btn-close-modal:hover {
+  background-color: #eee;
+}
+
+button.btn-close-modal:after {
+  position: absolute;
+  top: 10px;
+  left: 3px;
+  line-height: 0;
+  display: inline-block;
+  content: "\00d7"; /* This will render the 'X' */
+  font-size: 32px;
 }
 
 button.btn-save {
