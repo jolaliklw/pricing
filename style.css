@@ -88,27 +88,42 @@ input[type="number"] {
 }
 
 .btn-open-modal {
-  padding: 18px;
+  padding: 20px;
   background-color: #fff;
   border: none;
-  cursor: pointer;
   position: relative;
   border-radius: 50%;
   -webkit-tap-highlight-color: transparent;
 }
 
-.btn-open-modal:hover {
-  background-color: #eee;
+.btn-open-modal .tiga-titik {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: black;
+  transform: rotate(90deg);
 }
 
-.btn-open-modal::after {
-  display: inline-block;
+.btn-open-modal .tiga-titik:before,
+.btn-open-modal .tiga-titik:after {
   position: absolute;
-  top: 17px;
-  left: 12px;
-  line-height: 0;
-  content: "\2807";
-  font-size: 1.7rem;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.btn-open-modal .tiga-titik:before {
+  left: 8px;
+}
+
+.btn-open-modal .tiga-titik:after {
+  right: 8px;
+}
+
+.btn-open-modal:hover {
+  background-color: #eee;
 }
 
 .setting-modal {
@@ -155,29 +170,50 @@ input[type="number"] {
   margin-bottom: 4rem;
 }
 
-button.btn-close-modal {
+.btn-close-modal {
   background-color: #fff;
   border: none;
-  cursor: pointer;
   position: relative;
   padding: 14px;
   border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
 }
 
-button.btn-close-modal:hover {
+.btn-close-modal .silang:before,
+.btn-close-modal .silang:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 18px;
+  height: 2px;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+.btn-close-modal .silang:before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.btn-close-modal .silang:after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.btn-close-modal:hover {
   background-color: #eee;
 }
 
-button.btn-close-modal:after {
-  position: absolute;
-  top: 10px;
-  left: 3px;
-  line-height: 0;
-  display: inline-block;
-  content: "\00d7"; /* This will render the 'X' */
-  font-size: 32px;
+button.btn-save {
+  color: royalblue;
+  font-weight: 500;
+  padding: 6px 32px;
+  border: 1px solid royalblue;
+  border-radius: 32px;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  background-color: #fff;
 }
 
-button.btn-save {
-  padding: 4px 32px;
+button.btn-save:hover {
+  background-color: #eee;
 }
