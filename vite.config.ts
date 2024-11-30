@@ -16,7 +16,7 @@ export default defineConfig({
         short_name: 'Pricing',
         screenshots: [
           {
-            src: './source/sc1.png',
+            src: './source/image1.png',
             sizes: '640x320',
             type: 'image/png',
             form_factor: 'wide',
