@@ -5,13 +5,10 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/vite-react-pricing',
+  base: '/pricing',
   plugins: [
     react(),
     VitePWA({
-      devOptions: {
-        enabled: true,
-      },
       manifest: {
         name: 'Pricing',
         short_name: 'Pricing',
