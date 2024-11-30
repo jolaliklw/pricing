@@ -16,7 +16,7 @@ export default defineConfig({
         short_name: 'Pricing',
         screenshots: [
           {
-            src: '/source/sc1.png',
+            src: './source/sc1.png',
             sizes: '640x320',
             type: 'image/png',
             form_factor: 'wide',
@@ -25,25 +25,25 @@ export default defineConfig({
         ],
         icons: [
           {
-            src: '/pwa-192x192.png',
+            src: './pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/pwa-512x512.png',
+            src: './pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/pwa-maskable-192x192.png',
+            src: './pwa-maskable-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
           },
           {
-            src: '/pwa-maskable-512x512.png',
+            src: './pwa-maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
