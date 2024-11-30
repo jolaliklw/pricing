@@ -10,12 +10,13 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
         name: 'Pricing',
         short_name: 'Pricing',
         screenshots: [
           {
-            src: 'source/sc1.png',
+            src: '/source/sc1.png',
             sizes: '640x320',
             type: 'image/png',
             form_factor: 'wide',
