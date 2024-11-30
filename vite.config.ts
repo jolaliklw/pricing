@@ -9,26 +9,49 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: 'autoUpdate',
       manifest: {
         name: 'Pricing',
         short_name: 'Pricing',
+        screenshots: [
+          {
+            src: 'source/sc1.png',
+            sizes: '640x320',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'Wonder Widgets',
+          },
+        ],
         icons: [
           {
-            src: '/web-app-manifest-192x192.png',
+            src: '/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: '/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: '/pwa-maskable-192x192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
           },
           {
-            src: '/web-app-manifest-512x512.png',
+            src: '/pwa-maskable-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',
           },
         ],
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
         display: 'standalone',
+        background_color: '#FFFFFF',
+        theme_color: '#FFFFFF',
+        description: 'Pricing app',
       },
     }),
   ],
