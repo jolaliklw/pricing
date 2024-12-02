@@ -5,8 +5,9 @@ import {
   copyToCLipboard,
   useShowToast,
   getLocalData,
-} from './lib/constans';
+} from './lib/utils';
 import Form from './components/form';
+import iconSetting from './assets/dot3.png';
 
 interface Data {
   harga: string;
@@ -37,18 +38,18 @@ function App() {
     // localStorage.clear();
     const localData = getLocalData();
     setData({ ...localData });
-  }, []);
+  }, [data.ppn, data.extra]);
 
   useShowToast(show, setShow);
 
   const handleChange = (e: { target: HTMLInputElement }) => {
-    const v = e.target.value;
+    // remove leading zero
+    const v = e.target.value.replace(/^0+(?=\d)/, '');
 
     if (e.target.id === 'berat') {
       setData({ ...data, berat: v });
       return;
     }
-
     // addDot, show titik every 3 digit pada input view
     setData({ ...data, harga: addDot(v) });
   };
@@ -57,22 +58,42 @@ function App() {
 
   const total = totalHarga({ ...data });
 
-  function handleSave(e: React.MouseEvent<HTMLElement>) {
+  function handleSave(e: React.MouseEvent<HTMLElement>, d: Data) {
     const filterId = (e.target as HTMLElement).id;
-    const ids = ['harga', 'berat', 'show-total'];
+    const ids = ['harga', 'berat', 'show-total', 'icon-setting'];
     if (ids.some((id) => filterId.includes(id))) return;
 
-    const dataLocal = getLocalData();
-    if (dataLocal.harga === data.harga) return;
+    const localData = getLocalData();
+    if (
+      d.berat === localData.berat &&
+      d.extra === localData.extra &&
+      d.harga === localData.harga &&
+      d.ppn === localData.ppn
+    )
+      return;
 
-    localStorage.setItem('dataLocal', JSON.stringify({ ...data }));
+    console.log('save');
+    localStorage.setItem('dataLocal', JSON.stringify({ ...d }));
   }
+
+  function openModal() {}
 
   return (
     <main
-      className="max-w-prose mx-auto min-h-svh px-4 py-8"
-      onClick={handleSave}
+      className="max-w-prose mx-auto min-h-svh px-4 py-8 flex flex-col"
+      onClick={(e) => handleSave(e, data)}
     >
+      <div className="px-6">
+        <button className="rounded-full outline-sky-300" onClick={openModal}>
+          <img
+            id="icon-setting"
+            src={iconSetting}
+            alt="icon setting"
+            width="40px"
+            className="rounded-full p-1 hover:bg-gray-100"
+          />
+        </button>
+      </div>
       <div className="flex justify-center w-10/12 mx-auto relative">
         {show && (
           <div className="absolute -top-6">
@@ -107,6 +128,10 @@ function App() {
         handleChange={handleChange}
         handleFocus={handleFocus}
       />
+
+      <footer className="mt-auto text-gray-300 px-6">
+        <p className="text-xs font-normal">&copy; {new Date().getFullYear()}</p>
+      </footer>
     </main>
   );
 }

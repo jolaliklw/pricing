@@ -14,9 +14,9 @@ const toRupiah = (x: number) => {
   // let toNumber: number = 0;
   // if (typeof x === 'string') toNumber = Number(x);
 
-  return new Intl.NumberFormat('id-ID', {
+  return new Intl.NumberFormat('en-US', {
     // style: 'currency',
-    currency: 'IDR',
+    // currency: 'IDR',
     minimumFractionDigits: 0,
   }).format(x);
 };
@@ -29,6 +29,7 @@ type TotalHarga = {
 };
 
 const totalHarga = ({ berat, harga, ppn, extra }: TotalHarga) => {
+  if (!berat || !harga) return toRupiah(0);
   if (berat.length === 0 || harga.length === 0) return toRupiah(0);
 
   const total =
@@ -45,11 +46,11 @@ const copyToCLipboard = (
 ) => {
   if (x || totalView === '0') return;
   let txt = totalView;
-  if (txt.includes(',')) {
-    txt = txt.split(',')[0];
+  if (txt.includes('.')) {
+    txt = txt.split('.')[0];
   }
 
-  navigator.clipboard.writeText(txt.replace(/\./g, ''));
+  navigator.clipboard.writeText(txt.replace(/,/g, ''));
   setShow(true);
 };
 

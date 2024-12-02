@@ -20,7 +20,7 @@ export default function Form({
   handleFocus,
 }: Props) {
   return (
-    <form className="mt-8 flex flex-col gap-y-4">
+    <form className="flex flex-col gap-y-4 my-8">
       <div className={style.wrapper} key="harga">
         <label htmlFor="harga" className={style.label}>
           Harga/gr
