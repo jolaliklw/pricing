@@ -26,7 +26,7 @@ export default function Modal({
           <div className="relative bg-white rounded-lg shadow">
             {/* Modal header */}
             <div className="flex items-center justify-between p-4 md:p-5 rounded-t">
-              <h3 className="text-xl font-semibold dark:text-white">Setting</h3>
+              <h3 className="text-xl font-semibold">Setting</h3>
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -73,7 +73,7 @@ export default function Modal({
                 <div>
                   <label
                     htmlFor="extra"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-sm font-medium text-gray-900"
                   >
                     Extra:
                   </label>
