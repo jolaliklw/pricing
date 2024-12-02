@@ -58,12 +58,16 @@ function App() {
     const v = e.target.value.replace(/^0+(?=\d)/, '');
 
     if (e.target.id == 'ppn') {
-      setData({ ...data, ppn: v ? v : '0' });
+      let ppn = v;
+      if (v.length === 0) ppn = '0';
+      setData({ ...data, ppn });
       return;
     }
 
     if (e.target.id == 'extra') {
-      setData({ ...data, extra: v ? v : '0' });
+      let extra = v;
+      if (v.length === 0) extra = '0';
+      setData({ ...data, extra });
       return;
     }
 

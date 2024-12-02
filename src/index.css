@@ -14,7 +14,8 @@
     -moz-appearance: textfield;
   }
 
-  html {
+  html,
+  body {
     color-scheme: light;
   }
 }
