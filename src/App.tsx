@@ -7,7 +7,7 @@ import {
   getLocalData,
 } from './lib/utils';
 import Form from './components/form';
-import iconSetting from './assets/dot3.png';
+import iconSetting from './assets/dot-vertical.svg';
 import Modal from './components/modal';
 
 interface Data {
@@ -126,7 +126,7 @@ function App() {
               src={iconSetting}
               alt="icon setting"
               width="40px"
-              className="rounded-full p-1 hover:bg-gray-100"
+              className="rounded-full p-2 hover:bg-gray-100"
             />
           </button>
         </div>
