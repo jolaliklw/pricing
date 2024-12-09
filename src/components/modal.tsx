@@ -16,6 +16,8 @@ export default function Modal({ pricingDetails, setOpenSetting }: Props) {
     extra: pricingDetails.extra,
   });
 
+  const [isUpdate, setIsUpdate] = useState(false);
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const id = e.target.id;
@@ -108,6 +110,7 @@ export default function Modal({ pricingDetails, setOpenSetting }: Props) {
             {/* <!-- Modal footer --> */}
             <div className="flex items-center p-4 md:p-5 rounded-b">
               <button
+                disabled={isUpdate}
                 onClick={saveSetting}
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:bg-blue-200"
@@ -117,8 +120,8 @@ export default function Modal({ pricingDetails, setOpenSetting }: Props) {
             </div>
           </div>
 
-          <div className="mt-16">
-            <Update pricingDetails={pricingDetails} />
+          <div className="mt-16 px-5">
+            <Update pricingDetails={pricingDetails} setIsUpdate={setIsUpdate} />
           </div>
         </div>
       </div>

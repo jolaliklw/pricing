@@ -17,6 +17,7 @@ async function getData() {
 
 interface Props {
   pricingDetails: InitialState;
+  setIsUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ceckUpdate = (x: ListHarga[], y: ListHarga[]) => {
@@ -34,7 +35,7 @@ const ceckUpdate = (x: ListHarga[], y: ListHarga[]) => {
   );
 };
 
-export default function Update({ pricingDetails }: Props) {
+export default function Update({ pricingDetails, setIsUpdate }: Props) {
   const [update, setUpdate] = useState(true);
   const [isNewData, setIsNewData] = useState(false);
 
@@ -53,7 +54,7 @@ export default function Update({ pricingDetails }: Props) {
       if (isUptoDate) {
         setLocalData({ ...pricingDetails, listHarga: data });
       }
-
+      setIsUpdate((prev) => !prev);
       setIsNewData(isUptoDate);
     }
   }, [data]);
@@ -65,6 +66,7 @@ export default function Update({ pricingDetails }: Props) {
           onClick={() => {
             refetch();
             setUpdate(!update);
+            setIsUpdate((prev) => !prev);
           }}
           className="text-blue-500 border-b border-blue-500 font-extralight"
         >
@@ -100,7 +102,7 @@ export default function Update({ pricingDetails }: Props) {
     <div className="flex items-center gap-x-4 font-extralight">
       {isNewData ? (
         <>
-          <p>Harga sudah terupdate</p>
+          <p>Sudah di update ke harga terbaru</p>
           <Separator height="h-8" />
           <button
             onClick={() => location.reload()}
