@@ -39,7 +39,6 @@ export default function Modal({ pricingDetails, setOpenSetting }: Props) {
         ...pricingDetails,
         ppn: setting.ppn,
         extra: setting.extra,
-        hpr: '',
         berat: '',
       });
     }

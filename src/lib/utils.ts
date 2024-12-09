@@ -37,8 +37,10 @@ function hitungHarga({ hpr, berat, extra = '0', ppn = '0' }: InitialState) {
 
   hpr = hpr.replace(/,/g, '');
 
-  const total =
-    Number(hpr) * Number(berat) * (Number(ppn) / 100 + 1) + Number(extra);
+  let total = Number(hpr) * Number(berat) * (Number(ppn) / 100 + 1);
+  if (total > 0) {
+    total = total + Number(extra);
+  }
 
   return toRupiah(total);
 }
