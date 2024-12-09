@@ -1,19 +1,50 @@
+import { useState } from 'react';
+import InputOut from './ui/input-out';
+import Label from './ui/label';
+import Update from './update';
+import { InitialState } from '../App';
+import { setLocalData } from '../lib/utils';
+
 interface Props {
-  setModalShow: React.Dispatch<React.SetStateAction<boolean>>;
-  handleChange: (e: { target: HTMLInputElement }) => void;
-  saveModal: () => void;
-  data: {
-    ppn: string;
-    extra: string;
-  };
+  pricingDetails: InitialState;
+  setOpenSetting: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Modal({
-  setModalShow,
-  data,
-  handleChange,
-  saveModal,
-}: Props) {
+export default function Modal({ pricingDetails, setOpenSetting }: Props) {
+  const [setting, setSetting] = useState({
+    ppn: pricingDetails.ppn,
+    extra: pricingDetails.extra,
+  });
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const id = e.target.id;
+
+    if (id === 'ppn') {
+      setSetting({ ...setting, ppn: value });
+      return;
+    }
+
+    if (id === 'extra') setSetting({ ...setting, extra: value });
+  };
+
+  const saveSetting = () => {
+    if (
+      pricingDetails.ppn !== setting.ppn ||
+      pricingDetails.extra !== setting.extra
+    ) {
+      setLocalData({
+        ...pricingDetails,
+        ppn: setting.ppn,
+        extra: setting.extra,
+        hpr: '',
+        berat: '',
+      });
+    }
+
+    location.reload();
+  };
+
   return (
     <>
       {/* Main modal */}
@@ -30,7 +61,7 @@ export default function Modal({
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                onClick={() => setModalShow(false)}
+                onClick={() => setOpenSetting(false)}
               >
                 <svg
                   className="w-3 h-3"
@@ -51,40 +82,25 @@ export default function Modal({
             </div>
             {/* <!-- Modal body --> */}
             <div className="p-4 md:p-5 space-y-4">
-              <form className="max-w-sm mx-auto">
-                <div className="mb-4">
-                  <label
-                    htmlFor="ppn"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Ppn:
-                  </label>
-                  <input
+              <form className="max-w-sm mx-auto [&>*:not(:last-child)]:mb-4 [&>*>label]:mb-1">
+                <div>
+                  <Label htmlFor="ppn">Ppn</Label>
+                  <InputOut
                     type="number"
                     id="ppn"
-                    aria-describedby="helper-text-explanation"
-                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    autoComplete="off"
-                    value={data.ppn}
-                    onChange={handleChange}
+                    value={setting.ppn}
+                    onChange={handleInput}
+                    step={0.5}
                   />
                 </div>
-
                 <div>
-                  <label
-                    htmlFor="extra"
-                    className="block mb-2 text-sm font-medium text-gray-900"
-                  >
-                    Extra:
-                  </label>
-                  <input
+                  <Label htmlFor="extra">Extra</Label>
+                  <InputOut
                     type="number"
                     id="extra"
-                    aria-describedby="helper-text-explanation"
-                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                    autoComplete="off"
-                    value={data.extra}
-                    onChange={handleChange}
+                    value={setting.extra}
+                    onChange={handleInput}
+                    step={1000}
                   />
                 </div>
               </form>
@@ -92,13 +108,17 @@ export default function Modal({
             {/* <!-- Modal footer --> */}
             <div className="flex items-center p-4 md:p-5 rounded-b">
               <button
-                onClick={saveModal}
+                onClick={saveSetting}
                 type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:bg-blue-200"
               >
                 Save
               </button>
             </div>
+          </div>
+
+          <div className="mt-16">
+            <Update pricingDetails={pricingDetails} />
           </div>
         </div>
       </div>
