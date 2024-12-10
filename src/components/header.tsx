@@ -45,7 +45,7 @@ export default function Header({ totalHarga }: { totalHarga: string }) {
           id="total-harga"
           onClick={() => copyToCLipboard(totalHarga, isCopy, setIsCopy)}
           className={`text-4xl sm:text-5xl text-gray-400 tracking-tighter ${
-            totalHarga !== '0' ? 'cursor-pointer' : ''
+            totalHarga !== '0' ? 'cursor-pointer text-gray-700' : ''
           }`}
         >
           {totalHarga}

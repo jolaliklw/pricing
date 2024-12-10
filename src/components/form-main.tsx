@@ -54,14 +54,14 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
           <optgroup label="HARGA ATAS">
             {hargaAtas?.map(({ pen, kadar, harga }) => (
               <option key={pen + kadar} value={harga * 1000}>
-                &uarr; {kadar}
+                &uarr; {kadar} __ @{harga}
               </option>
             ))}
           </optgroup>
           <optgroup label="HARGA BAWAH">
             {hargaBawah?.map(({ pen, kadar, harga }) => (
               <option key={pen + kadar} value={harga * 1000}>
-                &darr; {kadar}
+                &darr; {kadar} __ @{harga}
               </option>
             ))}
           </optgroup>
