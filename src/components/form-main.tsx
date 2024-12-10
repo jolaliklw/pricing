@@ -23,8 +23,9 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const id = e.target.id;
     const v = e.target.value;
+
     if (id === 'harga') {
-      setPricingDetails({ ...pricingDetails, hpr: v });
+      setPricingDetails({ ...pricingDetails, hpr: v.replace(/^0/, '') });
       return;
     }
 
