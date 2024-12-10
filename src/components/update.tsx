@@ -21,12 +21,12 @@ interface Props {
 }
 
 const ceckUpdate = (x: ListHarga[], y: ListHarga[]) => {
-  const hargaAtasLocal = x[0]?.kadar;
+  const hargaAtasLocal = x[0]?.pen;
   const hargaBawahLocal = x[0]?.harga;
-  const hargaAtasServer = y[0]?.kadar;
+  const hargaAtasServer = y[0]?.pen;
   const hargaBawahServer = y[0]?.harga;
-  const verLocal = x[0]?.pen;
-  const verServer = y[0]?.pen;
+  const verLocal = x[0]?.status;
+  const verServer = y[0]?.status;
 
   return (
     hargaAtasLocal !== hargaAtasServer ||

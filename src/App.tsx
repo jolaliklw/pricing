@@ -8,8 +8,8 @@ import { getLocalData, hitungHarga, setLocalData } from './lib/utils';
 import Modal from './components/modal';
 
 export interface ListHarga {
-  pen: string;
-  kadar: number;
+  status: string;
+  pen: number;
   harga: number;
 }
 

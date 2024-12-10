@@ -15,10 +15,10 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
   const [selectHarga, setSelectHarga] = useState('');
 
   const { listHarga } = pricingDetails;
-  const hargaAtas = listHarga?.filter((harga) => harga.pen === 'atas');
-  const hargaBawah = listHarga?.filter((harga) => harga.pen === 'bawah');
-  const promo = listHarga?.filter((harga) => harga.pen === 'promo');
-  const online = listHarga?.filter((harga) => harga.pen === 'online');
+  const hargaAtas = listHarga?.filter((ls) => ls.status === 'atas');
+  const hargaBawah = listHarga?.filter((ls) => ls.status === 'bawah');
+  const promo = listHarga?.filter((ls) => ls.status === 'promo');
+  const online = listHarga?.filter((ls) => ls.status === 'online');
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const id = e.target.id;
@@ -53,30 +53,30 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
         >
           <option value="">-- Custom Harga --</option>
           <optgroup label="HARGA ATAS">
-            {hargaAtas?.map(({ pen, kadar, harga }) => (
-              <option key={pen + kadar} value={harga * 1000}>
-                &uarr; {kadar} __ @{harga}
+            {hargaAtas?.map(({ status, pen, harga }) => (
+              <option key={status + pen} value={harga * 1000}>
+                &uarr; {pen} __ @{harga}
               </option>
             ))}
           </optgroup>
           <optgroup label="HARGA BAWAH">
-            {hargaBawah?.map(({ pen, kadar, harga }) => (
-              <option key={pen + kadar} value={harga * 1000}>
-                &darr; {kadar} __ @{harga}
+            {hargaBawah?.map(({ pen, status, harga }) => (
+              <option key={status + pen} value={harga * 1000}>
+                &darr; {pen} __ @{harga}
               </option>
             ))}
           </optgroup>
           <optgroup label="PROMO">
-            {promo?.map(({ pen, kadar, harga }) => (
-              <option key={pen + kadar} value={harga * 1000}>
-                {pen} {kadar}
+            {promo?.map(({ pen, status, harga }) => (
+              <option key={status + pen} value={harga * 1000}>
+                {status} {pen}
               </option>
             ))}
           </optgroup>
           <optgroup label="ONLINE">
-            {online?.map(({ pen, kadar, harga }) => (
-              <option key={pen + kadar} value={harga * 1000}>
-                {pen} {kadar}
+            {online?.map(({ pen, status, harga }) => (
+              <option key={status + pen} value={harga * 1000}>
+                {status} {pen}
               </option>
             ))}
           </optgroup>

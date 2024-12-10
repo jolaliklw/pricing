@@ -9,7 +9,7 @@ interface Props {
 export default function Footer({ pricingDetails }: Props) {
   let { ppn, extra, listHarga } = pricingDetails;
 
-  const hargaAtas = listHarga[0]?.kadar ?? '-';
+  const hargaAtas = listHarga[0]?.pen ?? '-';
   const hargaBawah = listHarga[0]?.harga ?? '-';
 
   ppn = Number(ppn) > 0 ? ppn : '-';
