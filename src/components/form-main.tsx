@@ -1,7 +1,7 @@
 import Input from './ui/input';
 import Select from './ui/select';
 import { InitialState, ListHarga } from '../App';
-import { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { addDot } from '../lib/utils';
 
 interface Props {
