@@ -1,7 +1,7 @@
 import Input from './ui/input';
 import Select from './ui/select';
-import { InitialState } from '../App';
-import { useState } from 'react';
+import { InitialState, ListHarga } from '../App';
+import { ReactNode, useState } from 'react';
 import { addDot } from '../lib/utils';
 
 interface Props {
@@ -9,7 +9,43 @@ interface Props {
   setPricingDetails: React.Dispatch<React.SetStateAction<InitialState>>;
 }
 
-const handleFocus = (e: { target: HTMLInputElement }) => e.target.select();
+function OptionGroup({
+  label,
+  dataList,
+}: {
+  label: string;
+  dataList: ListHarga[];
+}) {
+  const icon = (x: string) => {
+    let icon;
+
+    switch (x) {
+      case 'atas':
+        icon = '\u2191';
+        break;
+      case 'bawah':
+        icon = '\u2193';
+        break;
+      case 'promo':
+        icon = '\u2117';
+        break;
+      default:
+        icon = x;
+    }
+
+    return icon;
+  };
+
+  return (
+    <optgroup label={label}>
+      {dataList?.map(({ status, pen, harga }) => (
+        <option key={status + pen} value={harga * 1000}>
+          {icon(status)} {pen} - @{harga}
+        </option>
+      ))}
+    </optgroup>
+  );
+}
 
 export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
   const [selectHarga, setSelectHarga] = useState('');
@@ -17,8 +53,10 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
   const { listHarga } = pricingDetails;
   const hargaAtas = listHarga?.filter((ls) => ls.status === 'atas');
   const hargaBawah = listHarga?.filter((ls) => ls.status === 'bawah');
-  const promo = listHarga?.filter((ls) => ls.status === 'promo');
-  const online = listHarga?.filter((ls) => ls.status === 'online');
+  const hargaPromo = listHarga?.filter((ls) => ls.status === 'promo');
+  const hargaOnline = listHarga?.filter((ls) => ls.status === 'online');
+
+  const handleFocus = (e: { target: HTMLInputElement }) => e.target.select();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const id = e.target.id;
@@ -52,34 +90,14 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
           }}
         >
           <option value="">-- Custom Harga --</option>
-          <optgroup label="HARGA ATAS">
-            {hargaAtas?.map(({ status, pen, harga }) => (
-              <option key={status + pen} value={harga * 1000}>
-                &uarr; {pen} __ @{harga}
-              </option>
-            ))}
-          </optgroup>
-          <optgroup label="HARGA BAWAH">
-            {hargaBawah?.map(({ pen, status, harga }) => (
-              <option key={status + pen} value={harga * 1000}>
-                &darr; {pen} __ @{harga}
-              </option>
-            ))}
-          </optgroup>
-          <optgroup label="PROMO">
-            {promo?.map(({ pen, status, harga }) => (
-              <option key={status + pen} value={harga * 1000}>
-                {status} {pen}
-              </option>
-            ))}
-          </optgroup>
-          <optgroup label="ONLINE">
-            {online?.map(({ pen, status, harga }) => (
-              <option key={status + pen} value={harga * 1000}>
-                {status} {pen}
-              </option>
-            ))}
-          </optgroup>
+          <OptionGroup label="HARGA ATAS" dataList={hargaAtas} />
+          <OptionGroup label="HARGA BAWAH" dataList={hargaBawah} />
+          {hargaPromo.length && (
+            <OptionGroup label="PROMO" dataList={hargaPromo} />
+          )}
+          {hargaOnline.length && (
+            <OptionGroup label="ONLINE" dataList={hargaOnline} />
+          )}
         </Select>
 
         <Input
