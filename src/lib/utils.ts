@@ -1,4 +1,4 @@
-import { InitialState } from '../App';
+import { InitialState } from '../types';
 
 const localStorageName = 'v1';
 

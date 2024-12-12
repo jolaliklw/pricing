@@ -1,6 +1,6 @@
 import Input from './ui/input';
 import Select from './ui/select';
-import { InitialState, ListHarga } from '../App';
+import { InitialState, ListHarga } from '../types';
 import { useState } from 'react';
 import { addDot } from '../lib/utils';
 
@@ -14,7 +14,7 @@ function OptionGroup({
   dataList,
 }: {
   label: string;
-  dataList: ListHarga[];
+  dataList: ListHarga;
 }) {
   const icon = (x: string) => {
     let icon;

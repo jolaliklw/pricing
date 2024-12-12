@@ -1,25 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { getLocalData, hitungHarga, setLocalData } from './lib/utils';
 import FormMain from './components/form-main';
 import Footer from './components/footer';
 import tripleDot from './assets/triple-dot.svg';
 import Header from './components/header';
-import { getLocalData, hitungHarga, setLocalData } from './lib/utils';
 import Modal from './components/modal';
-
-export interface ListHarga {
-  status: string;
-  pen: number;
-  harga: number;
-}
-
-export interface InitialState {
-  hpr: string;
-  berat: string;
-  ppn?: string;
-  extra?: string;
-  listHarga: ListHarga[];
-}
+import { InitialState } from './types';
 
 /*
 =======================

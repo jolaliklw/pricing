@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
-import { InitialState, ListHarga } from '../App';
+import { InitialState, ListHarga } from '../types';
 
 import Separator from './ui/separator';
 import loading from '../assets/throbber_small.svg';
@@ -12,7 +12,7 @@ async function getData() {
     'https://script.google.com/macros/s/AKfycbzcrgMErtSG1KeJvIMNx7YJ1klxWy1Fti4qeLInrmDXejRrAGj1Dcsrkazrb9xbYI5a/exec'
   ).then((res) => res.json());
 
-  return data as ListHarga[];
+  return data as ListHarga;
 }
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
   setIsUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ceckUpdate = (x: ListHarga[], y: ListHarga[]) => {
+const ceckUpdate = (x: ListHarga, y: ListHarga) => {
   const hargaAtasLocal = x[0]?.pen;
   const hargaBawahLocal = x[0]?.harga;
   const hargaAtasServer = y[0]?.pen;

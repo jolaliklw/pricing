@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputOut from './ui/input-out';
 import Label from './ui/label';
 import Update from './update';
-import { InitialState } from '../App';
+import { InitialState } from '../types';
 import { setLocalData } from '../lib/utils';
 
 interface Props {

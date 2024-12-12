@@ -1,5 +1,5 @@
 import Separator from './ui/separator';
-import { InitialState } from '../App';
+import { InitialState } from '../types';
 import { formatToK } from '../lib/utils';
 
 interface Props {
