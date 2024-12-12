@@ -52,7 +52,12 @@ export default function Update({ pricingDetails, setIsUpdate }: Props) {
       const isUptoDate = ceckUpdate(localData.listHarga, data);
 
       if (isUptoDate) {
-        setLocalData({ ...pricingDetails, listHarga: data });
+        setLocalData({
+          ...pricingDetails,
+          listHarga: data,
+          berat: '',
+          hpr: '',
+        });
       }
       setIsUpdate((prev) => !prev);
       setIsNewData(isUptoDate);
