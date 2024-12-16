@@ -25,7 +25,8 @@ function App() {
 
   const initialLoad = useRef(true);
   useEffect(() => {
-    if (initialLoad.current && !getLocalData()) {
+    const initialLocalData = getLocalData();
+    if (initialLoad.current && !initialLocalData) {
       localStorage.clear();
       setLocalData(pricingDetails);
       initialLoad.current = false;
