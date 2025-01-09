@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useShowToast } from '../lib/use-custom';
+import { useShowToast } from '../lib/useToast';
 
 const ToastCopy = () => (
   <div className="absolute -top-7">

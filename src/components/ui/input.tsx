@@ -12,6 +12,7 @@ interface Props {
   min?: string;
   step?: string;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  inputMode?: 'decimal' | 'numeric';
 }
 
 export default function Input({ ...props }: Props) {
@@ -40,7 +41,6 @@ export default function Input({ ...props }: Props) {
           {...props}
           autoComplete="off"
           pattern="[0-9]*"
-          inputMode="numeric"
           className="block min-w-0 grow py-2.5 pl-1 pr-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 font-medium text-right leading-4 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
         />
       </div>

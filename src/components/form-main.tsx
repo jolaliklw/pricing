@@ -110,6 +110,7 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
           onChange={handleChange}
           onFocus={handleFocus}
           disabled={selectHarga !== ''}
+          inputMode="numeric"
         />
 
         <Input
@@ -122,6 +123,7 @@ export default function FormMain({ setPricingDetails, pricingDetails }: Props) {
           value={pricingDetails.berat}
           onChange={handleChange}
           onFocus={handleFocus}
+          inputMode="decimal"
         />
       </form>
     </>
